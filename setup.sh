@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 echo "====================================================="
@@ -6,33 +5,31 @@ echo "🚀 歡迎使用平台 GCP 監控授權自動設定腳本"
 echo "====================================================="
 echo ""
 
-# 1. 優先使用從 Tutorial 傳入的 Project ID ($1)
-if [ -n "$1" ]; then
-    CURRENT_PROJECT="$1"
-    echo "🔄 接收到指定的專案 ID：$CURRENT_PROJECT，正在為您切換環境..."
-    # 靜默設定 project 避免噴出多餘訊息
-    gcloud config set project "$CURRENT_PROJECT" >/dev/null 2>&1
-else
-    # 備用機制：如果沒有從外部傳入參數，嘗試取得終端機當前的預設專案
+# 1. 優先從 Cloud Shell 教學面板的隱藏環境變數中取得 Project ID
+CURRENT_PROJECT="${GOOGLE_CLOUD_PROJECT:-$DEVSHELL_PROJECT_ID}"
+
+# 如果環境變數抓不到，再嘗試從 gcloud 設定檔抓取
+if [ -z "$CURRENT_PROJECT" ]; then
     CURRENT_PROJECT=$(gcloud config get-value project 2>/dev/null)
-    
-    if [ -z "$CURRENT_PROJECT" ]; then
-        echo "⚠️ 尚未偵測到預設的 GCP 專案。"
-        echo "正在為您列出可用的專案清單..."
-        echo "-----------------------------------------------------"
-        gcloud projects list --format="table(projectId,name)"
-        echo "-----------------------------------------------------"
-        
-        read -p "👉 請輸入您要授權的 Project ID (第一欄): " SELECTED_PROJECT
-        
-        if [ -z "$SELECTED_PROJECT" ]; then
-            echo "❌ 錯誤：未輸入 Project ID，腳本終止。"
-            exit 1
-        fi
-        
-        gcloud config set project "$SELECTED_PROJECT" >/dev/null 2>&1
-        CURRENT_PROJECT=$SELECTED_PROJECT
+fi
+
+# 2. 最終防呆機制（萬一真的都抓不到，或者抓到預設的無效字串）
+if [ -z "$CURRENT_PROJECT" ] || [ "$CURRENT_PROJECT" == "<PROJECT-ID>" ]; then
+    echo "⚠️ 尚未偵測到預設的 GCP 專案。"
+    echo "正在為您列出可用的專案清單..."
+    echo "-----------------------------------------------------"
+    gcloud projects list --format="table(projectId,name)"
+    echo "-----------------------------------------------------"
+
+    read -p "👉 請輸入您要授權的 Project ID (第一欄): " SELECTED_PROJECT
+
+    if [ -z "$SELECTED_PROJECT" ]; then
+        echo "❌ 錯誤：未輸入 Project ID，腳本終止。"
+        exit 1
     fi
+
+    gcloud config set project "$SELECTED_PROJECT" >/dev/null 2>&1
+    CURRENT_PROJECT=$SELECTED_PROJECT
 fi
 
 echo ""
