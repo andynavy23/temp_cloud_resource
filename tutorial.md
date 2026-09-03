@@ -13,7 +13,6 @@
 ## 2. 執行授權腳本
 
 專案選擇完成後，👉 **請點擊下方代碼區塊右上角的「播放圖示 (Run in Cloud Shell)」**。
-系統會自動將您選擇的專案帶入左側終端機並執行：
 
 ```bash
-bash setup.sh {{project-id}}
+bash setup.sh
