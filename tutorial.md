@@ -2,18 +2,11 @@
 
 # GCP 監控平台授權設定
 
-歡迎使用自動化授權小幫手！本教學將引導您安全、快速地將 GCP 專案授權給我們的監控平台。
+歡迎使用自動化授權小幫手！本教學將引導您查詢專案 ID，並執行授權腳本。
 
-## 1. 選擇您的 GCP 專案
+## 1. 查詢您的專案 ID
 
-👉 **請在下方下拉選單中，選擇您希望被監控的 GCP 專案：**
-*(選擇完成後，下方代碼區塊的 `<PROJECT-ID>` 會自動變成您的專案名稱)*
-
-<walkthrough-project-setup></walkthrough-project-setup>
-
-## 2. 執行授權腳本
-
-確認下方代碼已經顯示您的專案 ID 後，👉 **請點擊右上角的「播放圖示 (Run in Cloud Shell)」**。
+如果您不確定有哪些專案可以使用，👉 **請點擊下方代碼區塊右上角的「播放圖示 (Run in Cloud Shell)」**，這會在左側列出您目前擁有權限的專案清單：
 
 ```bash
-bash setup.sh "{{project-id}}"
+gcloud projects list --format="table(projectId,name)"
