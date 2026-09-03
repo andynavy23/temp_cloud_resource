@@ -6,15 +6,14 @@
 
 ## 1. 選擇您的 GCP 專案
 
-請在下方選擇您希望被監控的 GCP 專案。這會幫您自動完成 Cloud Shell 的環境設定：
+請在下方選擇您希望被監控的 GCP 專案：
 
 <walkthrough-project-setup></walkthrough-project-setup>
 
 ## 2. 執行授權腳本
 
-專案選擇完成後，我們準備了一支自動化腳本，將會賦予監控平台所需的讀取權限。
-
-👉 **請點擊下方代碼區塊右上角的「播放圖示 (Run in Cloud Shell)」**，系統就會自動在左側終端機執行：
+專案選擇完成後，👉 **請點擊下方代碼區塊右上角的「播放圖示 (Run in Cloud Shell)」**。
+系統會自動將您選擇的專案帶入左側終端機並執行：
 
 ```bash
-bash setup.sh
+bash setup.sh {{project-id}}
