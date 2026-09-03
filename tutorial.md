@@ -6,13 +6,14 @@
 
 ## 1. 選擇您的 GCP 專案
 
-請在下方選擇您希望被監控的 GCP 專案：
+👉 **請在下方下拉選單中，選擇您希望被監控的 GCP 專案：**
+*(選擇完成後，下方代碼區塊的 `<PROJECT-ID>` 會自動變成您的專案名稱)*
 
 <walkthrough-project-setup></walkthrough-project-setup>
 
 ## 2. 執行授權腳本
 
-專案選擇完成後，👉 **請點擊下方代碼區塊右上角的「播放圖示 (Run in Cloud Shell)」**。
+確認下方代碼已經顯示您的專案 ID 後，👉 **請點擊右上角的「播放圖示 (Run in Cloud Shell)」**。
 
 ```bash
-bash setup.sh
+bash setup.sh "{{project-id}}"
