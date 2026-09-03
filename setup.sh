@@ -36,7 +36,7 @@ echo "⏳ 正在套用 IAM 權限設定..."
 
 # 3. 執行 IAM 綁定
 # ⚠️ 請將下方的 SERVICE_ACCOUNT 換成你們平台真實的 SA
-SERVICE_ACCOUNT="your-monitoring-sa@your-platform-project.iam.gserviceaccount.com"
+SERVICE_ACCOUNT="poc-bq-spark@rd-testing-6.iam.gserviceaccount.com"
 ROLE="roles/viewer"
 
 # 執行綁定指令
