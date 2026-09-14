@@ -2,37 +2,46 @@
 
 # GCP 監控平台授權設定
 
-歡迎使用自動化授權小幫手！為了確保我們的監控平台能順利讀取您的雲端資源，請跟著以下步驟完成授權設定。
+歡迎使用自動化授權小幫手！為了確保我們的監控平台能順利讀取您的雲端資源，請依照以下步驟完成 GCP Project 授權，完成後，AICOM 將可依授權範圍讀取此 Project 的雲端資源資料。
+
+完成 GCP 端設定後，請返回 AICOM 進行資料驗證。AICOM 各項雲資源功能所需的其他 API，將於資料驗證時一併檢查；驗證成功後，才會正式建立綁定。
 
 ## 1. 啟用必要 API
 
-為確保授權指令能順利與您的 GCP 溝通，請先點擊下方按鈕啟用必要的 API（Resource Manager API）。如果該專案已經啟用過，系統會自動快速跳過。
+授權設定前，請先確認目標 Project 已啟用本授權流程所需的 GCP API，點擊下方按鈕可啟用 Cloud Resource Manager API。
+
+請注意：若該 API 已啟用，GCP 將不會重複設定。
 
 <walkthrough-enable-apis apis="cloudresourcemanager.googleapis.com"></walkthrough-enable-apis>
 
-## 2. 查詢您的專案 ID
+## 2. 選擇要串接 Project ID
 
-請在下方的選單中點擊，這會列出您目前擁有權限的專案。
-找到您要授權的專案後，請留意選單下方顯示的 **Project ID**：
+請選擇本次要串接至 AICOM 的 GCP Project，系統將依您選擇的 Project 取得對應的 Project ID，並於後續執行授權 Script 時提供使用。
 
 <walkthrough-project-setup></walkthrough-project-setup>
 
-> **💡 提示：** 請將選單下方顯示的真實 Project ID（例如 `my-company-prod-123`）複製或記下來，稍後執行指令時會用到。
+> **💡 提示：** 請複製下方顯示的 Project ID，稍後執行授權指令時會用到。
 
-## 3. 確認腳本內容 (選用)
+## 3. 確認執行 Script
 
-基於資安最佳實踐，我們公開透明所有的授權指令。如果您或您的 IT 團隊需要確認腳本實際執行的行為，可以直接在右側編輯器開啟檔案：
+為提升授權流程透明度，您可於執行前查看 setup.sh Script，確認本次授權將執行的設定內容。
 
-👉 <walkthrough-editor-open-file filePath="setup.sh">點擊此處展開 setup.sh 原始碼</walkthrough-editor-open-file>
+👉 <walkthrough-editor-open-file filePath="setup.sh">查看 setup.sh Script</walkthrough-editor-open-file>
 
-*(註：腳本核心僅執行 `gcloud projects add-iam-policy-binding` 賦予基礎檢視權限，絕無其他非必要操作。)*
+Script 主要用於將 AICOM Service Account 授予目標 Project 所需的 IAM 檢視權限。
 
-## 4. 執行授權腳本
+## 4. 執行授權 Script
 
-請將下方的指令**複製並貼上到左側的黑色終端機**中。
+請先複製您所選擇串接的 Project ID，並將其帶入授權指令中執行。
 
-> **⚠️ 重要提醒：**
-> 貼上後請**絕對不要直接按 Enter**！請先利用鍵盤的左右方向鍵，將指令中的 `<PROJECT-ID>` 刪除，並替換為您剛剛在第 2 步取得的真實專案 ID。
+Project ID
+my-company-prod-123
 
-```text
+接著複製下方指令，貼至左側 Cloud Shell 終端機，並將 <PROJECT-ID> 替換為上方的 Project ID：
+
+確認 Project ID 正確後，按下 Enter 執行。
+
+授權完成後，請返回 AICOM，繼續進行資料驗證。
+
+```bash
 bash setup.sh "<PROJECT-ID>"
