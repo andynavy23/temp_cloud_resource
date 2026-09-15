@@ -14,7 +14,7 @@
 
 > **💡 提示：** 請確認上方選取的 Project 為本次欲串接的目標，正式的 Project ID 將於稍後步驟自動帶入，屆時可直接複製使用。
 
-## 2. 啟用必要 API
+### 2. 啟用必要 API
 
 授權設定前，請先確認目標 Project 已啟用本授權流程所需的 GCP API，點擊下方按鈕可啟用
 
@@ -39,7 +39,7 @@
 
 Script 主要用於將 AICOM Service Account 授予目標 Project 所需的 IAM 檢視權限。
 
-## 4. 執行授權 Script
+### 4. 執行授權 Script
 
 請先複製您所選擇串接的 Project ID，並將其帶入授權指令中執行。
 
