@@ -6,13 +6,13 @@
 
 完成 GCP 端設定後，請返回 AICOM 進行資料驗證。AICOM 各項雲資源功能所需的其他 API，將於資料驗證時一併檢查；驗證成功後，才會正式建立綁定。
 
-## 1. 選擇要串接 Project ID
+## ​
 
-請選擇本次要串接至 AICOM 的 GCP Project，系統將依您選擇的 Project 取得對應的 Project ID，並於後續步驟自動帶入使用。
+### 1. 選擇要串接 Project ID
+
+請選擇本次要串接至 AICOM 的 GCP Project，系統將依您選擇的 Project 取得對應的 Project ID，並於後續執行授權 Script 時提供使用。
 
 <walkthrough-project-setup></walkthrough-project-setup>
-
-> **💡 提示：** 請確認上方選取的 Project 為本次欲串接的目標，正式的 Project ID 將於稍後步驟自動帶入，屆時可直接複製使用。
 
 ### 2. 啟用必要 API
 
@@ -31,7 +31,9 @@
 
 <walkthrough-enable-apis apis="cloudresourcemanager.googleapis.com,compute.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,bigquery.googleapis.com,monitoring.googleapis.com,aiplatform.googleapis.com,cloudasset.googleapis.com"></walkthrough-enable-apis>
 
-## 3. 確認執行 Script
+## ​
+
+### 3. 確認執行 Script
 
 為提升授權流程透明度，您可於執行前查看 setup.sh Script，確認本次授權將執行的設定內容。
 
