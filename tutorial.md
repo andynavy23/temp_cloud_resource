@@ -4,15 +4,24 @@
 
 歡迎使用自動化授權小幫手！為了確保我們的監控平台能順利讀取您的雲端資源，請依照以下步驟完成 GCP Project 授權，完成後，AICOM 將可依授權範圍讀取此 Project 的雲端資源資料。
 
-完成 GCP 端設定後，請返回 AICOM 進行資料驗證。AICOM 各項雲資源功能所需的其他 API，將於資料驗證時一併檢查；驗證成功後，才會正式建立綁定。
+完成 GCP 端設定後，請返回 AICOM 進行資料驗證，驗證成功後，才會正式建立綁定。
 
 ## 1. 啟用必要 API
 
-授權設定前，請先確認目標 Project 已啟用本授權流程所需的 GCP API，點擊下方按鈕可啟用 Cloud Resource Manager API。
+授權設定前，請先確認目標 Project 已啟用本授權流程所需的 GCP API，點擊下方按鈕即可一次啟用下列 API：
+
+- Cloud Resource Manager API
+- Compute Engine API
+- Cloud SQL Admin API
+- Cloud Storage API
+- BigQuery API
+- Cloud Monitoring API
+- Vertex AI API
+- Cloud Asset API
 
 請注意：若該 API 已啟用，GCP 將不會重複設定。
 
-<walkthrough-enable-apis apis="cloudresourcemanager.googleapis.com"></walkthrough-enable-apis>
+<walkthrough-enable-apis apis="cloudresourcemanager.googleapis.com,compute.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,bigquery.googleapis.com,monitoring.googleapis.com,aiplatform.googleapis.com,cloudasset.googleapis.com"></walkthrough-enable-apis>
 
 ## 2. 選擇要串接 Project ID
 
@@ -35,13 +44,14 @@ Script 主要用於將 AICOM Service Account 授予目標 Project 所需的 IAM 
 請先複製您所選擇串接的 Project ID，並將其帶入授權指令中執行。
 
 Project ID
-my-company-prod-123
+<walkthrough-project-id/>
 
-接著複製下方指令，貼至左側 Cloud Shell 終端機，並將 <PROJECT-ID> 替換為上方的 Project ID：
+接著複製下方指令，貼至左側 Cloud Shell 終端機（已自動帶入您於步驟 2 選擇的 Project ID）：
 
 確認 Project ID 正確後，按下 Enter 執行。
 
 授權完成後，請返回 AICOM，繼續進行資料驗證。
 
 ```bash
-bash setup.sh "<PROJECT-ID>"
+bash setup.sh "<walkthrough-project-id/>"
+```
