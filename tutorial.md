@@ -1,22 +1,26 @@
 <walkthrough-tutorial-duration duration="5"></walkthrough-tutorial-duration>
 
-# GCP Project 授權設定
+# 選擇 Project 並啟用必要 API
 
-請依照以下步驟完成 GCP Project 授權，完成後，AICOM 將可依授權範圍讀取此 Project 的雲端資源資料。
+<hr>
 
-完成 GCP 端設定後，請返回 AICOM 進行資料驗證。AICOM 各項雲資源功能所需的其他 API，將於資料驗證時一併檢查；驗證成功後，才會正式建立綁定。
+請先選擇本次要串接至 AICOM 的 GCP Project，再啟用 AICOM 所需的 API。
 
 ## ​
 
-### 1. 選擇要串接 Project ID
+### 1. 選擇要串接的 Project
 
-請選擇本次要串接至 AICOM 的 GCP Project，系統將依您選擇的 Project 取得對應的 Project ID，並於後續執行授權 Script 時提供使用。
+請選擇本次要串接至 AICOM 的 GCP Project。
+
+如使用既有 Project，請確認您具備必要的設定權限；若尚無適用的 Project，可先建立新 Project。
 
 <walkthrough-project-setup></walkthrough-project-setup>
 
+<hr>
+
 ### 2. 啟用必要 API
 
-授權設定前，請先確認目標 Project 已啟用本授權流程所需的 GCP API，點擊下方按鈕可啟用
+AICOM 需透過以下 GCP API 取得此 Project 的雲端資源，請點擊 「啟用」，系統將為目前選擇的 Project 啟用必要 API：
 
 - Cloud Resource Manager API
 - Compute Engine API
@@ -27,33 +31,26 @@
 - Vertex AI API
 - Cloud Asset API
 
-請注意：若該 API 已啟用，GCP 將不會重複設定。
+系統將執行以下指令：
 
 <walkthrough-enable-apis apis="cloudresourcemanager.googleapis.com,compute.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,bigquery.googleapis.com,monitoring.googleapis.com,aiplatform.googleapis.com,cloudasset.googleapis.com"></walkthrough-enable-apis>
 
-## ​
+<hr>
 
-### 3. 確認執行 Script
+## ​完成 AICOM IAM 授權
 
-為提升授權流程透明度，您可於執行前查看 setup.sh Script，確認本次授權將執行的設定內容。
+<hr>
 
-👉 <walkthrough-editor-open-file filePath="setup.sh">查看 setup.sh Script</walkthrough-editor-open-file>
+### 1. 執行授權 Script
 
-Script 主要用於將 AICOM Service Account 授予目標 Project 所需的 IAM 檢視權限。
-
-### 4. 執行授權 Script
-
-請先複製您所選擇串接的 Project ID，並將其帶入授權指令中執行。
-
-Project ID
-<walkthrough-project-id/>
-
-接著複製下方指令，貼至左側 Cloud Shell 終端機（已自動帶入您於步驟 1 選擇的 Project ID）：
-
-確認 Project ID 正確後，按下 Enter 執行。
-
-授權完成後，請返回 AICOM，繼續進行資料驗證。
+下方指令已自動帶入您於前一步選擇的 Project ID，請複製完整指令，貼至左側 Cloud Shell 終端機，並按下 Enter 執行。
 
 ```bash
 bash setup.sh "<walkthrough-project-id/>"
 ```
+
+<hr>
+
+### 2. 返回 AICOM
+
+授權完成後，請返回 AICOM，繼續進行資料驗證。
