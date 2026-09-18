@@ -2,8 +2,6 @@
 
 # 選擇 Project 並啟用必要 API
 
-<hr>
-
 請先選擇本次要串接至 AICOM 的 GCP Project，再啟用 AICOM 所需的 API。
 
 ## ​
@@ -15,8 +13,6 @@
 如使用既有 Project，請確認您具備必要的設定權限；若尚無適用的 Project，可先建立新 Project。
 
 <walkthrough-project-setup></walkthrough-project-setup>
-
-<hr>
 
 ### 2. 啟用必要 API
 
@@ -35,11 +31,7 @@ AICOM 需透過以下 GCP API 取得此 Project 的雲端資源，請點擊 「�
 
 <walkthrough-enable-apis apis="cloudresourcemanager.googleapis.com,compute.googleapis.com,sqladmin.googleapis.com,storage.googleapis.com,bigquery.googleapis.com,monitoring.googleapis.com,aiplatform.googleapis.com,cloudasset.googleapis.com"></walkthrough-enable-apis>
 
-<hr>
-
 ## ​完成 AICOM IAM 授權
-
-<hr>
 
 ### 1. 執行授權 Script
 
@@ -48,8 +40,6 @@ AICOM 需透過以下 GCP API 取得此 Project 的雲端資源，請點擊 「�
 ```bash
 bash setup.sh "<walkthrough-project-id/>"
 ```
-
-<hr>
 
 ### 2. 返回 AICOM
 
